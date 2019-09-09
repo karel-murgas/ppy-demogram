@@ -130,14 +130,14 @@ window.btoa = window.btoa || function () {
     var eventData;
     
     console.log(event);
-    console.log(jQuery('#contact-email'));
+    console.log(jQuery('#contact-email')[0]);
 
     event.preventDefault();
 
     eventData = $(this).serializeObject();
     eventData.formId = "leadForm";
     eventData.event = "leadSent";
-    if (jQuery('#contact-email')) eventData['DL-contact'] = jQuery('#contact-email').value;
+    if (jQuery('#contact-email')) eventData['DL-contact'] = jQuery('#contact-email')[0].value;
 
     console.log("Pushing to Data Layer: " + JSON.stringify(eventData, null, 2));
     window[window.dataLayerName].push(eventData);
