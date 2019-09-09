@@ -128,6 +128,8 @@ window.btoa = window.btoa || function () {
 
   $("#leadForm").on("submit", function(event) {
     var eventData;
+    
+    console.log(event);
 
     event.preventDefault();
 
