@@ -130,6 +130,7 @@ window.btoa = window.btoa || function () {
     var eventData;
     
     console.log(event);
+    console.log(jQuery('#contact-email'));
 
     event.preventDefault();
 
