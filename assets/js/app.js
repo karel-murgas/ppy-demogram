@@ -134,7 +134,7 @@ window.btoa = window.btoa || function () {
     eventData = $(this).serializeObject();
     eventData.formId = "leadForm";
     eventData.event = "leadSent";
-    if (jQuery('#contact-email')) eventData['{{DL-contact}}'] = jQuery('#contact-email')[0].value;
+    if (jQuery('#contact-email').length > 0) eventData['{{DL-contact}}'] = jQuery('#contact-email')[0].value;
 
     console.log("Pushing to Data Layer: " + JSON.stringify(eventData, null, 2));
     window[window.dataLayerName].push(eventData);
@@ -221,12 +221,12 @@ window.btoa = window.btoa || function () {
         eventData = {
           event: "wizard" + ((nextStep === 3) ? "Success" : "Step" + nextStep) + "Loaded"
         };
-        if (jQuery('#text')) eventData['{{DL-text}}'] = jQuery('#text')[0].value;
-        if (jQuery('#email')) eventData['{{DL-contact}}'] = jQuery('#email')[0].value;
-        if (jQuery('#telephone')) eventData['{{DL-telephone}}'] = jQuery('#telephone')[0].value;
-        if (jQuery('#date')) eventData['{{DL-date}}'] = jQuery('#date')[0].value;
-        if (jQuery('#name')) eventData['{{DL-name}}'] = jQuery('#name')[0].value;
-        if (jQuery('#topic')) eventData['{{DL-topic}}'] = jQuery('#topic')[0].value;
+        if (jQuery('#text').length > 0) eventData['{{DL-text}}'] = jQuery('#text')[0].value;
+        if (jQuery('#email').length > 0) eventData['{{DL-contact}}'] = jQuery('#email')[0].value;
+        if (jQuery('#telephone').length > 0) eventData['{{DL-telephone}}'] = jQuery('#telephone')[0].value;
+        if (jQuery('#date').length > 0) eventData['{{DL-date}}'] = jQuery('#date')[0].value;
+        if (jQuery('#name').length > 0) eventData['{{DL-name}}'] = jQuery('#name')[0].value;
+        if (jQuery('#topic').length > 0) eventData['{{DL-topic}}'] = jQuery('#topic')[0].value;
 
       } else {
         invalidFields = $(event.target).find(":invalid");
