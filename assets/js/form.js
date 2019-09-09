@@ -214,10 +214,14 @@ $('#form').bootstrapValidator({
 
     eventData.errors = [];
   })
-  .on('success.form.bv', function(event) {
+  .on('success.form.bv', function(event,data) {
     event.preventDefault();
     
     eventData.event = 'formSent';
+    eventData['DL-text'] = jQuery('#text').value;
+    eventData['DL-contact'] = jQuery('#email').value;
+    eventData['DL-telephone'] = jQuery('#telephone').value;
+    eventData['DL-date'] = jQuery('#date').value;
 
     console.log("Pushing to Data Layer: " + JSON.stringify(eventData, null, 2));
     window[window.dataLayerName].push(eventData);
