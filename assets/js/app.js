@@ -129,8 +129,8 @@ window.btoa = window.btoa || function () {
   $("#leadForm").on("submit", function(event) {
     var eventData;
     
-    console.log(this);
-    myTestVar = this;
+    console.log($(this));
+    myTestVar = $(this);
 
     event.preventDefault();
 
