@@ -128,12 +128,15 @@ window.btoa = window.btoa || function () {
 
   $("#leadForm").on("submit", function(event) {
     var eventData;
+    
+    console.log(event);
 
     event.preventDefault();
 
     eventData = $(this).serializeObject();
     eventData.formId = "leadForm";
     eventData.event = "leadSent";
+    if (jQuery('#contact-email')) eventData['DL-contact'] = jQuery('#contact-email').value;
 
     console.log("Pushing to Data Layer: " + JSON.stringify(eventData, null, 2));
     window[window.dataLayerName].push(eventData);
@@ -218,12 +221,15 @@ window.btoa = window.btoa || function () {
         $nextStepTabLink.tab("show");
 
         eventData = {
-          event: "wizard" + ((nextStep === 3) ? "Success" : "Step" + nextStep) + "Loaded",
-          formStep: nextStep
+          event: "wizard" + ((nextStep === 3) ? "Success" : "Step" + nextStep) + "Loaded"
         };
+        if (jQuery('#text')) eventData['DL-text'] = jQuery('#text').value;
+        if (jQuery('#email')) eventData['DL-contact'] = jQuery('#email').value;
+        if (jQuery('#telephone')) eventData['DL-telephone'] = jQuery('#telephone').value;
+        if (jQuery('#date')) eventData['DL-date'] = jQuery('#date').value;
+        if (jQuery('#name')) eventData['DL-name'] = jQuery('#name').value;
+        if (jQuery('#topic')) eventData['DL-topic'] = jQuery('#topic').value;
 
-        console.log("Pushing to Data Layer: " + JSON.stringify(eventData, null, 2));
-        window[window.dataLayerName].push(eventData);  
       } else {
         invalidFields = $(event.target).find(":invalid");
   
@@ -254,10 +260,11 @@ window.btoa = window.btoa || function () {
           event: "failedValidation",
           invalidFields: invalidFieldsMessage
         };
-
-        console.log("Pushing to Data Layer: " + JSON.stringify(eventData, null, 2));
-        window[window.dataLayerName].push(eventData);  
       }
+
+      console.log("Pushing to Data Layer: " + JSON.stringify(eventData, null, 2));
+      window[window.dataLayerName].push(eventData);  
+
       form.classList.add("was-validated");
     }, false);
   });
